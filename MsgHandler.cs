@@ -9,11 +9,12 @@ namespace Mytg_bot
 {
     class MsgHandler
     {
+        public static string LastMsg = null;
         public static async void HandlingAsync(TelegramBotClient client, Telegram.Bot.Types.Message msg)
         {
             if (msg.Text != null)
             {
-                string imgpath = null;
+                string imgpath;
                 string folderpath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
                 Console.WriteLine($"Yout text message: {msg.Text}");
                 switch (msg.Text)
@@ -53,11 +54,18 @@ namespace Mytg_bot
                         imgpath = Path.Combine(folderpath, "league_pics\\liga_portugal_logo.png");
                         PrintLogo(imgpath, client, msg);
                         break;
+                    case "Standings":
+
+                        break;
+                    case "Upcoming matches󠁧󠁢󠁥󠁮󠁧󠁿":
+
+                        break;
                     default:
                         await client.SendTextMessageAsync(chatId: msg.Chat.Id, "Use the buttons below 👇", replyMarkup: GetButtons_Leagues());
                         break;
                 }
                 Thread.Sleep(1000);
+                LastMsg = msg.Text;
             }
         }
 

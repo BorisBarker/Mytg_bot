@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Telegram.Bot;
 using Telegram.Bot.Args;
-using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Mytg_bot
 {
