@@ -2,11 +2,11 @@
 
 namespace Mytg_bot
 {
-    class Main_bot
+    class MainBot
     {
         static void Main()
         {
-            Init_bot.Initialize();
+            InitBot.Initialize();
         }
     }
 }

@@ -6,7 +6,7 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 namespace Mytg_bot
 {
-    class Init_bot
+    class InitBot
     {
         private static string token { get; set; } = "2075352178:AAG2mppW0psVNua9cX4DFhLPo6OQvnLeJnM";
         private static TelegramBotClient client;

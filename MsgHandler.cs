@@ -23,73 +23,50 @@ namespace Mytg_bot
                         break;
                     case "🏴󠁧󠁢󠁥󠁮󠁧󠁿EPL":
                         imgpath = Path.Combine(folderpath, "league_pics\\barclays-logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇪🇸LaLiga":
                         imgpath = Path.Combine(folderpath, "league_pics\\laliga_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇩🇪Bundesliga":
                         imgpath = Path.Combine(folderpath, "league_pics\\bundesliga_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇫🇷Ligue 1":
                         imgpath = Path.Combine(folderpath, "league_pics\\ligue1_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇮🇹Serie A":
                         imgpath = Path.Combine(folderpath, "league_pics\\serieA_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇷🇺RPL":
                         imgpath = Path.Combine(folderpath, "league_pics\\rfpl_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇳🇱Eredivisie":
                         imgpath = Path.Combine(folderpath, "league_pics\\eredivisie_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     case "🇵🇹Primeira Liga󠁧󠁢󠁥󠁮󠁧󠁿":
                         imgpath = Path.Combine(folderpath, "league_pics\\liga_portugal_logo.png");
-                        using (var pic = File.OpenRead(imgpath))
-                        {
-                            await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
-                                caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Personal());
-                        }
+                        PrintLogo(imgpath, client, msg);
                         break;
                     default:
                         await client.SendTextMessageAsync(chatId: msg.Chat.Id, "Use the buttons below 👇", replyMarkup: GetButtons_Leagues());
                         break;
                 }
                 Thread.Sleep(1000);
+            }
+        }
+
+        static async void PrintLogo(string imgpath, TelegramBotClient client, Telegram.Bot.Types.Message msg)
+        {
+            using (var pic = File.OpenRead(imgpath))
+            {
+                await client.SendPhotoAsync(msg.Chat.Id, new Telegram.Bot.Types.InputFiles.InputOnlineFile(pic),
+                    caption: $"You choose {msg.Text}!", replyMarkup: GetButtons_Statistics());
             }
         }
 
@@ -108,7 +85,7 @@ namespace Mytg_bot
             };
         }
 
-        private static IReplyMarkup GetButtons_Personal()
+        private static IReplyMarkup GetButtons_Statistics()
         {
             return new ReplyKeyboardMarkup
             {
