@@ -9,7 +9,7 @@ namespace Mytg_bot
 {
     class MsgHandler
     {
-        public static string LastMsg = null;
+        public static string league = null;
         public static async void HandlingAsync(TelegramBotClient client, Telegram.Bot.Types.Message msg)
         {
             if (msg.Text != null)
@@ -25,47 +25,57 @@ namespace Mytg_bot
                     case "🏴󠁧󠁢󠁥󠁮󠁧󠁿EPL":
                         imgpath = Path.Combine(folderpath, "league_pics\\barclays-logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇪🇸LaLiga":
                         imgpath = Path.Combine(folderpath, "league_pics\\laliga_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇩🇪Bundesliga":
                         imgpath = Path.Combine(folderpath, "league_pics\\bundesliga_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇫🇷Ligue 1":
                         imgpath = Path.Combine(folderpath, "league_pics\\ligue1_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇮🇹Serie A":
                         imgpath = Path.Combine(folderpath, "league_pics\\serieA_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇷🇺RPL":
                         imgpath = Path.Combine(folderpath, "league_pics\\rfpl_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇳🇱Eredivisie":
                         imgpath = Path.Combine(folderpath, "league_pics\\eredivisie_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "🇵🇹Primeira Liga󠁧󠁢󠁥󠁮󠁧󠁿":
                         imgpath = Path.Combine(folderpath, "league_pics\\liga_portugal_logo.png");
                         PrintLogo(imgpath, client, msg);
+                        league = msg.Text;
                         break;
                     case "Standings":
-
+                        ParseApi.StandingsQuery(league);
                         break;
                     case "Upcoming matches󠁧󠁢󠁥󠁮󠁧󠁿":
-
+                        ParseApi.UpcomingMatchesQuery(league);
+                        break;
+                    case "<< Back":
+                        await client.SendTextMessageAsync(msg.Chat.Id, "Choose league", replyMarkup: GetButtons_Leagues());
                         break;
                     default:
                         await client.SendTextMessageAsync(chatId: msg.Chat.Id, "Use the buttons below 👇", replyMarkup: GetButtons_Leagues());
                         break;
                 }
                 Thread.Sleep(1000);
-                LastMsg = msg.Text;
             }
         }
 
@@ -100,6 +110,7 @@ namespace Mytg_bot
                 Keyboard = new List<List<KeyboardButton>>
                 {
                     new List<KeyboardButton> { new KeyboardButton { Text = "Standings" }, new KeyboardButton { Text = "Upcoming matches" } },
+                    new List<KeyboardButton> { new KeyboardButton { Text = "<< Back" } },
                 },
                 ResizeKeyboard = true
             };
