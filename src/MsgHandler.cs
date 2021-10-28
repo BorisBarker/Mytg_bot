@@ -22,42 +22,42 @@ namespace Mytg_bot
                     case "/start":
                         await client.SendTextMessageAsync(msg.Chat.Id, "Choose league", replyMarkup: GetButtons_Leagues());
                         break;
-                    case "🏴󠁧󠁢󠁥󠁮󠁧󠁿EPL":
+                    case LeagueName.Eng:
                         imgpath = Path.Combine(folderpath, "league_pics\\barclays-logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇪🇸LaLiga":
+                    case LeagueName.Spa:
                         imgpath = Path.Combine(folderpath, "league_pics\\laliga_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇩🇪Bundesliga":
+                    case LeagueName.Ger:
                         imgpath = Path.Combine(folderpath, "league_pics\\bundesliga_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇫🇷Ligue 1":
+                    case LeagueName.Fra:
                         imgpath = Path.Combine(folderpath, "league_pics\\ligue1_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇮🇹Serie A":
+                    case LeagueName.Ita:
                         imgpath = Path.Combine(folderpath, "league_pics\\serieA_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇷🇺RPL":
+                    case LeagueName.Rus:
                         imgpath = Path.Combine(folderpath, "league_pics\\rfpl_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇳🇱Eredivisie":
+                    case LeagueName.Net:
                         imgpath = Path.Combine(folderpath, "league_pics\\eredivisie_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
                         break;
-                    case "🇵🇹Primeira Liga󠁧󠁢󠁥󠁮󠁧󠁿":
+                    case LeagueName.Por:
                         imgpath = Path.Combine(folderpath, "league_pics\\liga_portugal_logo.png");
                         PrintLogo(imgpath, client, msg);
                         league = msg.Text;
@@ -94,10 +94,10 @@ namespace Mytg_bot
             {
                 Keyboard = new List<List<KeyboardButton>>
                 {
-                    new List<KeyboardButton> { new KeyboardButton { Text = "🏴󠁧󠁢󠁥󠁮󠁧󠁿EPL" }, new KeyboardButton { Text = "🇪🇸LaLiga" },
-                        new KeyboardButton { Text = "🇩🇪Bundesliga" }, new KeyboardButton { Text = "🇫🇷Ligue 1" } },
-                    new List<KeyboardButton> { new KeyboardButton { Text = "🇮🇹Serie A" }, new KeyboardButton { Text = "🇷🇺RPL" },
-                        new KeyboardButton { Text = "🇳🇱Eredivisie" }, new KeyboardButton { Text = "🇵🇹Primeira Liga󠁧󠁢󠁥󠁮󠁧󠁿" } }
+                    new List<KeyboardButton> { new KeyboardButton { Text = LeagueName.Eng }, new KeyboardButton { Text = LeagueName.Spa },
+                        new KeyboardButton { Text = LeagueName.Ger }, new KeyboardButton { Text = LeagueName.Fra } },
+                    new List<KeyboardButton> { new KeyboardButton { Text = LeagueName.Ita }, new KeyboardButton { Text = LeagueName.Rus },
+                        new KeyboardButton { Text = LeagueName.Net }, new KeyboardButton { Text = LeagueName.Por } }
                 },
                 ResizeKeyboard = true
             };

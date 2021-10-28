@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 
@@ -6,12 +7,11 @@ namespace Mytg_bot
 {
     class InitBot
     {
-        private static string token { get; set; } = "2075352178:AAG2mppW0psVNua9cX4DFhLPo6OQvnLeJnM";
         private static TelegramBotClient client;
 
         public static void Initialize()
         {
-            client = new TelegramBotClient(token);
+            client = new TelegramBotClient(Tokens.GetTelegramToken());
             client.StartReceiving();
             client.OnMessage += OnMessageHandlerAsync;
 

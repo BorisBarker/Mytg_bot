@@ -13,7 +13,7 @@ namespace Mytg_bot
             var client = new RestClient("https://api-football-v1.p.rapidapi.com/v3/standings?season=2021&league=" + CountryToIndex(country));
             var request = new RestRequest(Method.GET);
             request.AddHeader("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "2472836ce0mshcb688e7d49b9ecap14af26jsnc3012beab4a4");
+            request.AddHeader("x-rapidapi-key", Tokens.GetRapidAPIToken());
             IRestResponse response = await client.ExecuteAsync(request);
             ChooseLeagueToWrite(country, response);
         }
@@ -24,7 +24,7 @@ namespace Mytg_bot
             var client = new RestClient("https://api-football-v1.p.rapidapi.com/v3/standings?season=2021&league=" + "");
             var request = new RestRequest(Method.GET);
             request.AddHeader("x-rapidapi-host", "api-football-v1.p.rapidapi.com");
-            request.AddHeader("x-rapidapi-key", "2472836ce0mshcb688e7d49b9ecap14af26jsnc3012beab4a4");
+            request.AddHeader("x-rapidapi-key", Tokens.GetRapidAPIToken());
             //IRestResponse response = await client.ExecuteAsync(request);
             //Console.WriteLine(response.Content);
         }
@@ -33,21 +33,21 @@ namespace Mytg_bot
         {
             switch (index)
             {
-                case "🏴󠁧󠁢󠁥󠁮󠁧󠁿EPL":
+                case LeagueName.Eng:
                     return "39";
-                case "🇪🇸LaLiga":
+                case LeagueName.Spa:
                     return "140";
-                case "🇩🇪Bundesliga":
+                case LeagueName.Ger:
                     return "78";
-                case "🇫🇷Ligue 1":
+                case LeagueName.Fra:
                     return "61";
-                case "🇮🇹Serie A":
+                case LeagueName.Ita:
                     return "135";
-                case "🇷🇺RPL":
+                case LeagueName.Rus:
                     return "235";
-                case "🇳🇱Eredivisie":
+                case LeagueName.Net:
                     return "88";
-                case "🇵🇹Primeira Liga󠁧󠁢󠁥󠁮󠁧󠁿":
+                case LeagueName.Por:
                     return "94";
             }
             Console.WriteLine("ERROR!");
@@ -60,35 +60,35 @@ namespace Mytg_bot
             string folderpath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
             switch (country)
             {
-                case "🏴󠁧󠁢󠁥󠁮󠁧󠁿EPL":
+                case LeagueName.Eng:
                     jsonpath = Path.Combine(folderpath, "league_json\\Eng_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇪🇸LaLiga":
+                case LeagueName.Spa:
                     jsonpath = Path.Combine(folderpath, "league_json\\Spa_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇩🇪Bundesliga":
+                case LeagueName.Ger:
                     jsonpath = Path.Combine(folderpath, "league_json\\Ger_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇫🇷Ligue 1":
+                case LeagueName.Fra:
                     jsonpath = Path.Combine(folderpath, "league_json\\Fra_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇮🇹Serie A":
+                case LeagueName.Ita:
                     jsonpath = Path.Combine(folderpath, "league_json\\Ita_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇷🇺RPL":
+                case LeagueName.Rus:
                     jsonpath = Path.Combine(folderpath, "league_json\\Rus_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇳🇱Eredivisie":
+                case LeagueName.Net:
                     jsonpath = Path.Combine(folderpath, "league_json\\Net_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
-                case "🇵🇹Primeira Liga󠁧󠁢󠁥󠁮󠁧󠁿":
+                case LeagueName.Por:
                     jsonpath = Path.Combine(folderpath, "league_json\\Por_league.json");
                     WriteJsonToFile(response, jsonpath);
                     break;
